@@ -5,12 +5,12 @@ dotenv.config();
 
 const dbConfig = async () => {
 
-    mongoose.connect(`mongodb://127.0.0.1:27017/db_network_social`, {
+    mongoose.connect(`mongodb://127.0.0.1:27017/db_todo`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
     .then(() => console.log('Success for connect to DB'))
-    .catch((e) => console.log('Connection failed to db', e));
+    .catch((e) => console.log('Connection failed to db'));
 
 };
 

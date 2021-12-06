@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
     return(
-        <div>
+        <div className="px-5">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                     <div>
