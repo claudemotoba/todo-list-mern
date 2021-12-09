@@ -7,39 +7,39 @@ const Header = () => {
                     <div className="col-sm-12 collapse navbar-collapse" id="navbarNavDropdown">
                         
                         <ul className="col-sm-12 navbar-nav flex-column">
-                            <p>Filtre par :</p>
+                            <h5>Filtre par :</h5>
                             <li className="nav-item">
-                                <NavLink activeClassName="active" to="/" className="nav-link">
+                                <NavLink to="/" activeclassname="active" className="nav-link">
                                     <span className="me-3 badge bg-info"> 10</span>
                                     Tout 
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink activeClassName="active" to="/status/open" className="nav-link">
+                                <NavLink to="/status/open" activeclassname="active" className="nav-link">
                                     <span className="me-3 badge bg-secondary"> 10</span>
                                     OPEN
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink activeClassName="active" to="/status/in-progress" className="nav-link">
+                                <NavLink to="/status/in-progress" activeclassname="active" className="nav-link">
                                     <span className="me-3 badge bg-primary"> 10</span>
                                     IN PROGRESS
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink activeClassName="active" to="/status/pending" className="nav-link">
+                                <NavLink to="/status/pending" activeclassname="active" className="nav-link">
                                     <span className="me-3 badge bg-warning"> 10</span>
                                     PENDING
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink activeClassName="active" to="/status/completed" className="nav-link">
+                                <NavLink to="/status/completed" activeclassname="active" className="nav-link">
                                     <span className="me-3 badge bg-success"> 10</span>
                                     COMPLETED
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink activeClassName="active" to="/status/close" className="nav-link">
+                                <NavLink to="/status/close" activeclassname="active" className="nav-link">
                                     <span className="me-3 badge bg-dark"> 10</span>
                                     CLOSE
                                 </NavLink>

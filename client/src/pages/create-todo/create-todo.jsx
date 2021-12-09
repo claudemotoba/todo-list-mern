@@ -60,7 +60,7 @@ const CreateTodo = () => {
                 <input 
                     type="text" 
                     defaultValue={todo?.title}
-                    {...register("title", { required: true, maxLength: 20 })} className="form-control" 
+                    {...register("title", { required: true })} className="form-control" 
                     id="title" 
                     placeholder="Lire"
                 />
@@ -80,8 +80,8 @@ const CreateTodo = () => {
                         <label htmlFor="" className="form-label">Statut <span className="text-danger">*</span> </label>
                         <select 
                             className="form-control"  
-                            defaultValue={todo?.status}
-                            {...register("status", { required: true, maxLength: 20 })} 
+                            value={todo?.status}
+                            {...register("status", { required: true })} 
                             name="status" id="">
                             <option value="OPEN">OPEN</option>
                             <option value="IN PROGRESS">IN PROGRESS</option>

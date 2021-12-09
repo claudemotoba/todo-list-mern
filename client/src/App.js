@@ -22,7 +22,7 @@ function App() {
         <Routes>
 
           <Route exact path="/" element={<TodoList/>}/>
-          {/* <Route exact path="/status/:status" element={<TodoList/>}/> */}
+          <Route exact path="/status/:status" element={<TodoList/>}/>
           <Route exact path="/save" element={<CreateTodo/>}/>
           <Route exact path="/save/:id" element={<CreateTodo/>}/>
 

@@ -17,20 +17,21 @@ const TodoList = () => {
     };
 
     const getTaskByCategory = async () => {
+        
         const char = status.replace("-", " ").toUpperCase()
         const res = await findAllTodos(`/status/${char}`)
         setTodos(res.response)
+        
     }
 
     useEffect(()=> {
-
-        // if (status) {
-        //     setTodos([])
-        //     getTaskByCategory()
-        // }
-        // else getAll();
+        setLoading(true)
         
-    }, [])
+        if (status) getTaskByCategory()
+        else getAll();
+        
+        setLoading(false)
+    }, [todos])
 
     const deleteTodo = async (id) => {
         setLoading(true)
