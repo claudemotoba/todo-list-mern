@@ -70,9 +70,10 @@ class TodoController{
                 if(!todo)
                     return res.status(200).json({ status: 200, description: "Aucune tâche trouvée", response: null });
                 else 
-                    return todo.status(200).json({ status: 200, description: "success", response: user });
+                    return res.status(200).json({ status: 200, description: "success", response: todo });
 
             } catch (error) {
+
                 const err = ErrorManagement(error, res);
                 return res.status(500).json({ status: 500, description: err, response: null }) ;
             }
@@ -94,6 +95,28 @@ class TodoController{
                 return res.status(200).json({ status: 200, description: "success", response: null });
 
 
+            } catch (error) {
+                const err = ErrorManagement(error, res);
+                return res.status(500).json({ status: 500, description: err, response: null }) ;
+            }
+        }
+    }
+
+    static getByCategory(){
+        return async (req, res) => {
+            const { params: { status } } =  req
+            
+            try {
+                const todos = await TodoModel.find({ status: status })
+                .sort( { "createdAt": -1 } ).limit(20);
+
+                if(!todos){
+                    return  res.status(200).json({ status: 200, description: "Aucune tache trouvée", response: [] });
+                }else{
+                   
+                    return  res.status(200).json({ status: 200, description: "success", response: todos });
+                }
+                    
             } catch (error) {
                 const err = ErrorManagement(error, res);
                 return res.status(500).json({ status: 500, description: err, response: null }) ;

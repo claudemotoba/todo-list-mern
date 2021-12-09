@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from 'react';
 
-import { saveTodo, findOneTodos } from '../../api/crudRequest';
+import { saveTodo, findOneTodos, updateTodo } from '../../api/crudRequest';
 import Loader from '../../components/loader';
 
 const CreateTodo = () => {
@@ -12,17 +12,34 @@ const CreateTodo = () => {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [todo, setTodo] = useState([])
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
-        setLoading(true)
-        const save = await saveTodo(data);
+        
+        if (id) {
 
-        if(typeof save == 'string') setMessage(save);
+            setLoading(true)
+            const save = await updateTodo(id, data);
+    
+            if(typeof save == 'string') setMessage(save);
+    
+            if(save.status == 200) return navigate("/");;
+    
+            setLoading(false)
 
-        if(save.status == 200) return navigate("/");;
+        }else{
 
-        setLoading(false)
+            setLoading(true)
+            data.status = "OPEN";
+            const save = await saveTodo(data);
+    
+            if(typeof save == 'string') setMessage(save);
+    
+            if(save.status == 200) return navigate("/");;
+    
+            setLoading(false)
+        }
+        
     };
 
     const getAll = async () => {
@@ -57,6 +74,25 @@ const CreateTodo = () => {
                     placeholder="Description"
                     rows="3"></textarea>
             </div>
+            {
+                id ? (
+                    <div className="mb-3">
+                        <label htmlFor="" className="form-label">Statut <span className="text-danger">*</span> </label>
+                        <select 
+                            className="form-control"  
+                            defaultValue={todo?.status}
+                            {...register("status", { required: true, maxLength: 20 })} 
+                            name="status" id="">
+                            <option value="OPEN">OPEN</option>
+                            <option value="IN PROGRESS">IN PROGRESS</option>
+                            <option value="COMPLETED">COMPLETED</option>
+                            <option value="PENDING">PENDING</option>
+                            <option value="CLOSE">CLOSE</option>
+                        </select>
+                    </div>
+                ) : ""
+            }
+            
             <div className="">
                 <span className="text-danger"> { message } </span>
             </div>
@@ -66,7 +102,7 @@ const CreateTodo = () => {
             
             <div className="mt-2">
                 <button type="submit" className="btn btn-primary me-3">
-                    Ajouter
+                    Valider
                 </button>
                 <Link to="/" className="btn btn-secondary">
                     Annuler

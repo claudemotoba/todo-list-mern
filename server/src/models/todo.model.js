@@ -13,6 +13,10 @@ const todoSchema = new mongoose.Schema({
         trim: true,
         maxlength: [200, "La description ne doit pas dépasser 200 caractères"]
     },
+    status : {
+        type: String,
+        trim: true,
+    },
 },{
     timestamps: true
 })
